@@ -1,12 +1,13 @@
 const errors = require("restify-errors");
 const News = require("../models/News");
 const config = require("../config");
+const mongooseStringQuery = require("mongoose-string-query");
 
 module.exports = server => {
   server.get("/news", async (req, res, next) => {
     try {
-      const news = await News.find({});
-      console.log(req.params);
+      const news = await News.find(req.query);
+      console.log(req.query);
       res.send(news);
       next();
     } catch (err) {
