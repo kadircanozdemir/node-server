@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const timestamp = require("mongoose-timestamp");
 
 const UserScheme = new mongoose.Schema({
-  image: {
+  token: {
     type: String,
     required: true,
     trim: true

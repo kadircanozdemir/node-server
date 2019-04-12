@@ -1,11 +1,13 @@
 const errors = require("restify-errors");
 const News = require("../models/News");
 const config = require("../config");
+const mongooseStringQuery = require("mongoose-string-query");
 
 module.exports = server => {
   server.get("/news", async (req, res, next) => {
     try {
-      const news = await News.find({});
+      const news = await News.find(req.query);
+      console.log(req.query);
       res.send(news);
       next();
     } catch (err) {
@@ -34,13 +36,30 @@ module.exports = server => {
       return next(new errors.InvalidContentError("Expects 'application/json'"));
     }
 
-    const { image, title, content, type } = req.body;
+    const {
+      image,
+      title,
+      content,
+      category,
+      authors,
+      link,
+      release,
+      likes,
+      dislikes,
+      views
+    } = req.body;
 
     const sNew = new News({
       image,
       title,
       content,
-      type
+      category,
+      authors,
+      link,
+      release,
+      likes,
+      dislikes,
+      views
     });
 
     try {
