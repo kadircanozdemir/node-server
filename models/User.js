@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const timestamp = require("mongoose-timestamp");
+const mongooseStringQuery = require("mongoose-string-query");
 
 const UserScheme = new mongoose.Schema({
   token: {
@@ -10,6 +11,7 @@ const UserScheme = new mongoose.Schema({
 });
 
 UserScheme.plugin(timestamp);
+UserScheme.plugin(mongooseStringQuery);
 const User = mongoose.model("User", UserScheme);
 
-export default User;
+module.exports = User;

@@ -1,7 +1,6 @@
 const errors = require("restify-errors");
 const News = require("../models/News");
 const config = require("../config");
-const mongooseStringQuery = require("mongoose-string-query");
 
 module.exports = server => {
   server.get("/news", async (req, res, next) => {
@@ -83,7 +82,8 @@ module.exports = server => {
         { _id: req.params.id },
         req.body
       );
-      res.send(200);
+      const savedNew = await News.findById(req.params.id);
+      res.send(savedNew);
       next();
     } catch (err) {
       return next(
