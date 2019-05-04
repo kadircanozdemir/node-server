@@ -1,6 +1,8 @@
 const errors = require("restify-errors");
 const News = require("../models/News");
-const config = require("../config");
+const User = require("../models/User");
+const { Expo } = require("expo-server-sdk");
+const expo = new Expo();
 
 module.exports = server => {
   server.get("/news", async (req, res, next) => {
@@ -63,6 +65,7 @@ module.exports = server => {
 
     try {
       const newsNew = await sNew.save();
+      await pushNotify(newsNew);
       res.send(201);
       next();
     } catch (err) {
@@ -110,4 +113,34 @@ module.exports = server => {
       );
     }
   });
+};
+
+const pushNotify = async data => {
+  const tokens = await User.find();
+  let tokenss = [];
+  await tokens.map(tok => tokenss.push(tok.token));
+  let messages = [];
+  for (let pushToken of tokenss) {
+    if (!Expo.isExpoPushToken(pushToken)) {
+      console.error(`Push token ${pushToken} is not a valid Expo push token`);
+      continue;
+    }
+    messages.push({
+      to: pushToken,
+      sound: "default",
+      title: "Yeni haber yayınlandı",
+      body: data.title,
+      data: data
+    });
+  }
+  let chunks = expo.chunkPushNotifications(messages);
+  (async () => {
+    for (let chunk of chunks) {
+      try {
+        let ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  })();
 };
