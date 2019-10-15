@@ -398,9 +398,11 @@ csv-generate@^3.2.0:
   integrity sha512-ZdS2KrgoLxm1guL9XhuaZX223Tiorldvl9QC0M/gihcrJavNDokAp/rX3CyyRHpK+rImxEE3L47cHe7npQMkkg==
 
 csv-parse@^4.3.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.4.0.tgz#b253e44119cdbd309287260447694cc17f10dc74"
-  integrity sha512-rvoRlZxu6Ap8jOkhoQQeI+5y/eTPqEIVk20bxZmo81k2ArUiNLv8LAERTEKarOQuC7BKXGyzSqAKWox115bg7A==
+  version "4.6.3"
+  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.6.3.tgz#25ab95a9320871847947ac633741ef2c483441a9"
+  integrity sha512-pAxEb5kabSaKEwqSXv7vpq6eucXQgY67MLpeLwnYCd21YjTD5OCIIIXGKyUKN/uNQNnzW/elNfxJfozQ1EjB/g==
+  dependencies:
+    pad "^3.2.0"
 
 csv-stringify@^5.1.2:
   version "5.3.0"
@@ -1679,6 +1681,13 @@ package-json@^4.0.0:
     registry-url "^3.0.3"
     semver "^5.1.0"
 
+pad@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/pad/-/pad-3.2.0.tgz#be7a1d1cb6757049b4ad5b70e71977158fea95d1"
+  integrity sha512-2u0TrjcGbOjBTJpyewEl4hBO3OeX5wWue7eIFPzQTg6wFSvoaHcBTTUY5m+n0hd04gmTCPuY0kCpVIVuw5etwg==
+  dependencies:
+    wcwidth "^1.0.1"
+
 parseurl@~1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
@@ -2475,6 +2484,13 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   integrity sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   dependencies:
     minimalistic-assert "^1.0.0"
+
+wcwidth@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/wcwidth/-/wcwidth-1.0.1.tgz#f0b0dcf915bc5ff1528afadb2c0e17b532da2fe8"
+  integrity sha1-8LDc+RW8X/FSivrbLA4XtTLaL+g=
+  dependencies:
+    defaults "^1.0.3"
 
 which@^1.2.9:
   version "1.3.1"
